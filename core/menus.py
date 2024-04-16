@@ -93,16 +93,16 @@ class EmbedPageSource(menus.AsyncIteratorPageSource, abc.ABC):
         icon_url=None,
         per_page=20,
         show_index=True,
-        **kwargs,
+        format_embed=lambda *x: None,
+        format_entry=lambda *x: None,
     ):
         super().__init__(iterator, per_page=per_page)
         self.color = color
         self.title = title
         self.icon_url = icon_url
         self.show_index = show_index
-
-        for name, value in kwargs.items():
-            setattr(self, name, value)
+        self.format_embed = format_embed
+        self.format_entry = format_entry
 
     def _prepare_embed(self, menu, page):
         start = menu.current_page * self.per_page

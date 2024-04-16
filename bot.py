@@ -9,6 +9,9 @@ from core.context import CustomContext
 
 
 async def determine_prefix(bot, message):
+    if not message.guild:
+        return commands.when_mentioned_or(DEFAULT_PREFIX)(bot, message)
+
     query = {"_id": message.guild.id}
     entry = await bot.mongo.db.guild.find_one_and_update(
         query, {"$setOnInsert": query}, upsert=True, return_document=True

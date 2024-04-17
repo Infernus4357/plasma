@@ -56,7 +56,7 @@ class CustomHelpCommand(commands.HelpCommand):
     async def send_error_message(self, error, /, *, modify=False):
         error = self.command_not_found(error) if modify else error
         embed = self.context.response_embed(error, style=EmbedStyle.FAILURE)
-        await self.context.send(embed=embed, ephemeral=True)
+        await self.context.reply(embed=embed, ephemeral=True)
 
     def _prepare_embed(self, cmds, *, title, description):
         embed = discord.Embed(color=0xFE9AC9, title=title, description=description)
@@ -103,7 +103,7 @@ class CustomHelpCommand(commands.HelpCommand):
             title=f"{cog.qualified_name} Commands",
             description=cog.description or "No Description",
         )
-        await self.context.send(embed=embed)
+        await self.context.reply(embed=embed)
 
     async def send_group_help(self, group):
         subcommands = group.commands
@@ -125,7 +125,7 @@ class CustomHelpCommand(commands.HelpCommand):
         if examples := self.get_examples(group):
             embed.description += "\n\n" + "**Examples**" + "\n" + examples
 
-        await self.context.send(embed=embed)
+        await self.context.reply(embed=embed)
 
     async def send_command_help(self, command):
         try:
@@ -157,7 +157,7 @@ class CustomHelpCommand(commands.HelpCommand):
         if examples := self.get_examples(command):
             embed.add_field(name="Examples", value=examples, inline=False)
 
-        await self.context.send(embed=embed)
+        await self.context.reply(embed=embed)
 
 
 async def setup(bot):

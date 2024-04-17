@@ -30,13 +30,13 @@ class Manager(commands.Cog):
         if prefix is None:
             entry = await self.bot.mongo.db.guild.find_one({"_id": ctx.guild.id})
             valid = entry.get("prefix", DEFAULT_PREFIX) if entry else DEFAULT_PREFIX
-            await ctx.send(f"My current prefix is `{valid}` in this server.")
+            await ctx.reply(f"My current prefix is `{valid}` in this server.")
 
         else:
             await self.bot.mongo.db.guild.update_one(
                 {"_id": ctx.guild.id}, {"$set": {"prefix": prefix}}, upsert=True
             )
-            await ctx.send(f"Changed prefix to `{prefix}` for this server.")
+            await ctx.reply(f"Changed prefix to `{prefix}` for this server.")
 
     @commands.hybrid_command()
     async def upload_emoji(self, ctx, file: discord.Attachment):

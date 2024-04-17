@@ -80,7 +80,7 @@ class Paginator(menus.MenuPages, menus.Menu):
     async def send_initial_message(self, ctx, channel):
         page = await self._source.get_page(0)
         kwargs = await self._get_kwargs_from_page(page)
-        return await ctx.send(**kwargs, view=self._prepare_view())
+        return await ctx.reply(**kwargs, view=self._prepare_view())
 
 
 class EmbedPageSource(menus.AsyncIteratorPageSource, abc.ABC):

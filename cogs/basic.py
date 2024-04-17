@@ -30,15 +30,15 @@ class Basic(commands.Cog):
                 f"You're on cooldown! Try again in {human_timedelta(datetime.timedelta(seconds=error.retry_after))}",
                 style=EmbedStyle.FAILURE,
             )
-            await ctx.send(embed=embed, ephemeral=True)
+            await ctx.reply(embed=embed, ephemeral=True)
 
         elif isinstance(error, commands.ConversionError):
             embed = ctx.response_embed(str(error.original), style=EmbedStyle.FAILURE)
-            await ctx.send(embed=embed, ephemeral=True)
+            await ctx.reply(embed=embed, ephemeral=True)
 
         elif isinstance(error, (commands.UserInputError, commands.CheckFailure)):
             embed = ctx.response_embed(str(error), style=EmbedStyle.FAILURE)
-            await ctx.send(embed=embed, ephemeral=True)
+            await ctx.reply(embed=embed, ephemeral=True)
 
         elif isinstance(error, commands.CommandNotFound):
             return
@@ -63,7 +63,7 @@ class Basic(commands.Cog):
     async def ping(self, ctx):
         """Checks the bot's latency."""
 
-        message = await ctx.send("Pong!")
+        message = await ctx.reply("Pong!")
         seconds = (message.created_at - ctx.message.created_at).total_seconds()
         await message.edit(content=f"Pong! **{seconds * 1000:.0f} ms**")
 

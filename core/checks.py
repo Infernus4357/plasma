@@ -39,7 +39,7 @@ def is_trial_moderator():
 def is_server_booster():
     async def predicate(ctx):
         try:
-            return await is_admin()(ctx)
+            return await is_admin().predicate(ctx)
         except commands.CheckFailure:
             pass
 

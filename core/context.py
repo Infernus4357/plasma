@@ -61,6 +61,9 @@ class CustomContext(commands.Context):
         )
         return embed
 
+    async def reply(self, content=None, *, mention_author=False, **kwargs):
+        await super().reply(content, mention_author=mention_author, **kwargs)
+
     async def confirm(
         self,
         content=None,

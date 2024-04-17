@@ -48,6 +48,8 @@ class Manager(commands.Cog):
             The image file to be uploaded as an emoji.
         """
 
+        await ctx.defer()
+
         name = file.filename.split(".")[0][:32]
         type = file.content_type.split("/")[1]
 

@@ -74,6 +74,6 @@ class CustomContext(commands.Context):
         **kwargs,
     ):
         view = cls(self, timeout=timeout, delete_message_after=delete_message_after)
-        view.message = await self.send(content, view=view, **kwargs)
+        view.message = await self.reply(content, view=view, **kwargs)
         await view.wait()
         return view.result

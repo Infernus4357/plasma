@@ -78,7 +78,7 @@ class Manager(commands.Cog):
         except discord.HTTPException as e:
             raise commands.BadArgument(e.text)
 
-        await ctx.reply(f"**{ctx.author}** uploaded {emoji}", mention_author=False)
+        await ctx.reply(f"**{ctx.author}** uploaded {emoji}")
 
 
 async def setup(bot):

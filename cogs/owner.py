@@ -16,7 +16,7 @@ class Owner(commands.Cog):
 
         items = await self.bot.tree.sync()
         embed = ctx.response_embed(f"Synced `{len(items)}` commands globally.")
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
 
 async def setup(bot):
